@@ -412,7 +412,9 @@
     "/user": {
       "get": {
         "summary": "Get Data User",
-        "tags": [],
+        "tags": [
+          "User-Account"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -603,7 +605,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "User-Account"
+        ]
       }
     }
   },
@@ -619,6 +624,9 @@
     },
     {
       "name": "Transaction"
+    },
+    {
+      "name": "User-Account"
     }
   ]
 }
