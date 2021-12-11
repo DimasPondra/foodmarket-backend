@@ -114,28 +114,36 @@
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Dimas"
                   },
                   "email": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "test@mail.com"
                   },
                   "address": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Indonesia"
                   },
                   "houseNumber": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "20"
                   },
                   "phoneNumber": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "0822345678"
                   },
                   "city": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Indonesia"
                   },
                   "password": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "test1234"
                   },
                   "password_confirmation": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "test1234"
                   }
                 },
                 "required": [
