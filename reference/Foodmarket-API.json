@@ -1,14 +1,13 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Authentication",
+    "title": "Foodmarket API",
     "version": "1.0",
-    "description": "API Access Authentication",
+    "description": "API Foodmarket",
     "contact": {
       "name": "Dimas Pondra Oktafianto",
       "email": "dimaspondrao@gmail.com"
-    },
-    "summary": "API Authentication"
+    }
   },
   "servers": [
     {
@@ -158,9 +157,6 @@
           "description": ""
         },
         "x-internal": false,
-        "tags": [
-          "Register"
-        ],
         "parameters": [
           {
             "schema": {
@@ -182,6 +178,9 @@
             "name": "Content-Type",
             "required": true
           }
+        ],
+        "tags": [
+          "Authentication"
         ]
       },
       "parameters": []
@@ -275,9 +274,6 @@
             }
           }
         },
-        "tags": [
-          "Login"
-        ],
         "description": "API untuk login",
         "parameters": [
           {
@@ -323,6 +319,290 @@
               }
             }
           }
+        },
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/logout": {
+      "post": {
+        "summary": "Logout",
+        "operationId": "post-logout",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success Logout": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Token Revoked"
+                      },
+                      "data": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "message": "Unauthenticated."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk logout",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/x-www-form-urlencoded"
+              ]
+            },
+            "in": "header",
+            "name": "Content-Type",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Bearer sRtn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/user": {
+      "get": {
+        "summary": "Get Data User",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Data profile user berhasil diambil"
+                      },
+                      "data": {
+                        "id": 2,
+                        "name": "Dimas",
+                        "email": "test@mail.com",
+                        "email_verified_at": null,
+                        "current_team_id": null,
+                        "profile_photo_path": null,
+                        "address": "Indonesia",
+                        "houseNumber": "20",
+                        "phoneNumber": "0822345678",
+                        "city": "Indonesia",
+                        "roles": "USER",
+                        "created_at": 1639219275,
+                        "updated_at": "2021-12-11T10:41:15.000000Z",
+                        "profile_photo_url": "https://ui-avatars.com/api/?name=Dimas&color=7F9CF5&background=EBF4FF"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-user",
+        "description": "API untuk ambil data user yang sedang login",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Bearer sRtn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update User Data",
+        "operationId": "post-user",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success Update Data": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Profile Updated"
+                      },
+                      "data": {
+                        "id": 2,
+                        "name": "Pondra",
+                        "email": "pondra@mail.com",
+                        "email_verified_at": null,
+                        "current_team_id": null,
+                        "profile_photo_path": null,
+                        "address": "Jakarta",
+                        "houseNumber": "21",
+                        "phoneNumber": "08987654321",
+                        "city": "Jakarta",
+                        "roles": "USER",
+                        "created_at": 1639219275,
+                        "updated_at": "2021-12-11T12:23:03.000000Z",
+                        "profile_photo_url": "https://ui-avatars.com/api/?name=Pondra&color=7F9CF5&background=EBF4FF"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "message": "Unauthenticated."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk update data user yang sedang login",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/x-www-form-urlencoded"
+              ]
+            },
+            "in": "header",
+            "name": "Content-Type",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Bearer sRtn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Pondra"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "pondra@mail.com"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jakarta"
+                  },
+                  "houseNumber": {
+                    "type": "string",
+                    "example": "21"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "08987654231"
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "Jakarta"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -332,10 +612,13 @@
   },
   "tags": [
     {
-      "name": "Login"
+      "name": "Authentication"
     },
     {
-      "name": "Register"
+      "name": "Food"
+    },
+    {
+      "name": "Transaction"
     }
   ]
 }
