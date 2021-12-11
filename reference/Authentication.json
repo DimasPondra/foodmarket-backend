@@ -177,6 +177,123 @@
         ]
       },
       "parameters": []
+    },
+    "/login": {
+      "post": {
+        "summary": "Login",
+        "operationId": "post-login",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success Login": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Authenticated"
+                      },
+                      "data": {
+                        "access_token": "2|fQn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO",
+                        "token_type": "Bearer",
+                        "user": {
+                          "id": 2,
+                          "name": "Dimas",
+                          "email": "test@mail.com",
+                          "email_verified_at": null,
+                          "current_team_id": null,
+                          "profile_photo_path": null,
+                          "address": "Indonesia",
+                          "houseNumber": "20",
+                          "phoneNumber": "0822345678",
+                          "city": "Indonesia",
+                          "roles": "USER",
+                          "created_at": 1639219275,
+                          "updated_at": "2021-12-11T10:41:15.000000Z",
+                          "profile_photo_url": "https://ui-avatars.com/api/?name=Dimas&color=7F9CF5&background=EBF4FF"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Login Failed": {
+                    "value": {
+                      "meta": {
+                        "code": 500,
+                        "status": "error",
+                        "message": "Authentication Failed"
+                      },
+                      "data": {
+                        "message": "Something went wrong",
+                        "error": {
+                          "validator": {
+                            "customMessages": [],
+                            "fallbackMessages": [],
+                            "customAttributes": [],
+                            "customValues": [],
+                            "excludeUnvalidatedArrayKeys": null,
+                            "extensions": [],
+                            "replacers": []
+                          },
+                          "response": null,
+                          "status": 422,
+                          "errorBag": "default",
+                          "redirectTo": null
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Login"
+        ],
+        "description": "API untuk login",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/x-www-form-urlencoded"
+              ]
+            },
+            "in": "header",
+            "name": "Content-Type",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -184,7 +301,7 @@
   },
   "tags": [
     {
-      "name": "Auth"
+      "name": "Login"
     },
     {
       "name": "Register"
