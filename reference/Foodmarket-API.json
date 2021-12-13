@@ -479,7 +479,7 @@
         ]
       },
       "post": {
-        "summary": "Update User Data",
+        "summary": "Update Data User",
         "operationId": "post-user",
         "responses": {
           "200": {
@@ -608,6 +608,753 @@
         },
         "tags": [
           "User-Account"
+        ]
+      }
+    },
+    "/user/photo": {
+      "post": {
+        "summary": "Update Photo User",
+        "operationId": "post-user-photo",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success Update": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "File successfully uploaded"
+                      },
+                      "data": [
+                        "assets/user/0bt4PEZSZ5S6vpgLmM1aCJUMqGbbCBAfhyUHJZo9.png"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "meta": {
+                        "code": 401,
+                        "status": "error",
+                        "message": "Update photo fails"
+                      },
+                      "data": {
+                        "error": {
+                          "file": [
+                            "The file field is required."
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk update foto user yang sedang login",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "multipart/form-data"
+              ]
+            },
+            "in": "header",
+            "name": "Content-Type",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Bearer sRtn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "object",
+                    "description": "rules: image, max-file-size: 2048"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "User-Account"
+        ]
+      }
+    },
+    "/food": {
+      "get": {
+        "summary": "Get Data Food",
+        "tags": [
+          "Food"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success Get Data": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Data list produk berhasil diambil"
+                      },
+                      "data": {
+                        "current_page": 1,
+                        "data": [
+                          {
+                            "id": 1,
+                            "name": "Ayam Bakar Madu",
+                            "description": "Satu ekor ayam kampung utuh dibakar dengan cita rasa yang manis pedas",
+                            "ingredients": "Bawang Putih, Bawang Merah, Cabai Merah, Cabai Rawit, Madu, Garam, Gula",
+                            "price": 35000,
+                            "rate": 4.3,
+                            "types": "rekomendasi",
+                            "picturePath": "http://foodmarket-backend.test/storage/",
+                            "deleted_at": null,
+                            "created_at": 1639364191,
+                            "updated_at": 1639364191
+                          },
+                          {
+                            "id": 2,
+                            "name": "Burger Kong",
+                            "description": "Burger dengan ukuran besar terdiri dari daging, sayur, hingga keju yang meleleh",
+                            "ingredients": "Roti, Daging Sapi, Sayur, Keju",
+                            "price": 25000,
+                            "rate": 4.7,
+                            "types": "populer",
+                            "picturePath": "http://foodmarket-backend.test/storage/",
+                            "deleted_at": null,
+                            "created_at": 1639364191,
+                            "updated_at": 1639364191
+                          },
+                          {
+                            "id": 3,
+                            "name": "Nasi Goreng Istimewa",
+                            "description": "Nasi goreng dengan cita rasa nusantara yang khas dilengkapi dengan acar, potongan ayam dan juga telur setengah matang",
+                            "ingredients": "Bawang Putih, Bawang Merah, Cabai Merah, Cabai Rawit, Nasi, Garam, Gula, Telur, Daging Ayam, Acar",
+                            "price": 20000,
+                            "rate": 4.5,
+                            "types": "rekomendasi",
+                            "picturePath": "http://foodmarket-backend.test/storage/",
+                            "deleted_at": null,
+                            "created_at": 1639364191,
+                            "updated_at": 1639364191
+                          }
+                        ],
+                        "first_page_url": "http://foodmarket-backend.test/api/food?page=1",
+                        "from": 1,
+                        "last_page": 1,
+                        "last_page_url": "http://foodmarket-backend.test/api/food?page=1",
+                        "links": [
+                          {
+                            "url": null,
+                            "label": "&laquo; Previous",
+                            "active": false
+                          },
+                          {
+                            "url": "http://foodmarket-backend.test/api/food?page=1",
+                            "label": "1",
+                            "active": true
+                          },
+                          {
+                            "url": null,
+                            "label": "Next &raquo;",
+                            "active": false
+                          }
+                        ],
+                        "next_page_url": null,
+                        "path": "http://foodmarket-backend.test/api/food",
+                        "per_page": 6,
+                        "prev_page_url": null,
+                        "to": 3,
+                        "total": 3
+                      }
+                    }
+                  },
+                  "Success Get Data By Food Id": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Data produk berhasil diambil"
+                      },
+                      "data": {
+                        "id": 1,
+                        "name": "Ayam Bakar Madu",
+                        "description": "Satu ekor ayam kampung utuh dibakar dengan cita rasa yang manis pedas",
+                        "ingredients": "Bawang Putih, Bawang Merah, Cabai Merah, Cabai Rawit, Madu, Garam, Gula",
+                        "price": 35000,
+                        "rate": 4.3,
+                        "types": "rekomendasi",
+                        "picturePath": "http://foodmarket-backend.test/storage/",
+                        "deleted_at": null,
+                        "created_at": 1639364191,
+                        "updated_at": 1639364191
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-food",
+        "description": "API untuk ambil data food",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "in": "query",
+            "name": "id",
+            "description": "searching by food id"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Ayam Bakar Madu"
+            },
+            "in": "query",
+            "name": "name",
+            "description": "searching by food name"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "rekomendasi",
+                "populer"
+              ],
+              "example": "rekomendasi"
+            },
+            "in": "query",
+            "name": "types",
+            "description": "filter by food types"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "0"
+            },
+            "in": "query",
+            "name": "price_from",
+            "description": "filter by price food from"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "35000"
+            },
+            "in": "query",
+            "name": "price_to",
+            "description": "filter by price food to"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "3.0"
+            },
+            "in": "query",
+            "name": "rate_from",
+            "description": "filter by rate food from"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "4.9"
+            },
+            "in": "query",
+            "name": "rate_to",
+            "description": "filter by rate food to"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "6",
+              "example": "5"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "limit data in page"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "1"
+            },
+            "in": "query",
+            "name": "page",
+            "description": "current page"
+          }
+        ]
+      }
+    },
+    "/transaction": {
+      "get": {
+        "summary": "Get Data Transaction",
+        "tags": [
+          "Transaction"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success Get Data": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Data list transaksi berhasil diambil"
+                      },
+                      "data": {
+                        "current_page": 1,
+                        "data": [
+                          {
+                            "id": 1,
+                            "user_id": 1,
+                            "food_id": 1,
+                            "quantity": 1,
+                            "total": 38000,
+                            "status": "ON_DELIVERY",
+                            "payment_url": "",
+                            "deleted_at": null,
+                            "created_at": 1639391670,
+                            "updated_at": 1639391670,
+                            "food": {
+                              "id": 1,
+                              "name": "Ayam Bakar Madu",
+                              "description": "Satu ekor ayam kampung utuh dibakar dengan cita rasa yang manis pedas",
+                              "ingredients": "Bawang Putih, Bawang Merah, Cabai Merah, Cabai Rawit, Madu, Garam, Gula",
+                              "price": 35000,
+                              "rate": 4.3,
+                              "types": "rekomendasi",
+                              "picturePath": "http://foodmarket-backend.test/storage/",
+                              "deleted_at": null,
+                              "created_at": 1639364191,
+                              "updated_at": 1639364191
+                            },
+                            "user": {
+                              "id": 1,
+                              "name": "Dimas",
+                              "email": "test@mail.com",
+                              "email_verified_at": null,
+                              "current_team_id": null,
+                              "profile_photo_path": null,
+                              "address": "Indonesia",
+                              "houseNumber": "20",
+                              "phoneNumber": "0822345678",
+                              "city": "Indonesia",
+                              "roles": "USER",
+                              "created_at": 1639365267,
+                              "updated_at": "2021-12-13T03:14:27.000000Z",
+                              "profile_photo_url": "https://ui-avatars.com/api/?name=Dimas&color=7F9CF5&background=EBF4FF"
+                            }
+                          }
+                        ],
+                        "first_page_url": "http://foodmarket-backend.test/api/transaction?page=1",
+                        "from": 1,
+                        "last_page": 1,
+                        "last_page_url": "http://foodmarket-backend.test/api/transaction?page=1",
+                        "links": [
+                          {
+                            "url": null,
+                            "label": "&laquo; Previous",
+                            "active": false
+                          },
+                          {
+                            "url": "http://foodmarket-backend.test/api/transaction?page=1",
+                            "label": "1",
+                            "active": true
+                          },
+                          {
+                            "url": null,
+                            "label": "Next &raquo;",
+                            "active": false
+                          }
+                        ],
+                        "next_page_url": null,
+                        "path": "http://foodmarket-backend.test/api/transaction",
+                        "per_page": "6",
+                        "prev_page_url": null,
+                        "to": 1,
+                        "total": 1
+                      }
+                    }
+                  },
+                  "Success Get Data By Transaction Id": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Data transaksi berhasil diambil"
+                      },
+                      "data": {
+                        "id": 1,
+                        "user_id": 1,
+                        "food_id": 1,
+                        "quantity": 1,
+                        "total": 38000,
+                        "status": "ON_DELIVERY",
+                        "payment_url": "",
+                        "deleted_at": null,
+                        "created_at": 1639391670,
+                        "updated_at": 1639391670,
+                        "food": {
+                          "id": 1,
+                          "name": "Ayam Bakar Madu",
+                          "description": "Satu ekor ayam kampung utuh dibakar dengan cita rasa yang manis pedas",
+                          "ingredients": "Bawang Putih, Bawang Merah, Cabai Merah, Cabai Rawit, Madu, Garam, Gula",
+                          "price": 35000,
+                          "rate": 4.3,
+                          "types": "rekomendasi",
+                          "picturePath": "http://foodmarket-backend.test/storage/",
+                          "deleted_at": null,
+                          "created_at": 1639364191,
+                          "updated_at": 1639364191
+                        },
+                        "user": {
+                          "id": 1,
+                          "name": "Dimas",
+                          "email": "test@mail.com",
+                          "email_verified_at": null,
+                          "current_team_id": null,
+                          "profile_photo_path": null,
+                          "address": "Indonesia",
+                          "houseNumber": "20",
+                          "phoneNumber": "0822345678",
+                          "city": "Indonesia",
+                          "roles": "USER",
+                          "created_at": 1639365267,
+                          "updated_at": "2021-12-13T03:14:27.000000Z",
+                          "profile_photo_url": "https://ui-avatars.com/api/?name=Dimas&color=7F9CF5&background=EBF4FF"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-transaction",
+        "description": "API untuk ambil data transakdi berdasarkan yang login",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "id",
+            "description": "searching by transaction id "
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "food_id",
+            "description": "searching by food id"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "ON_DELIVERY",
+                "DELIVERED",
+                "CANCELLED"
+              ],
+              "example": "ON_DELIVERY"
+            },
+            "in": "query",
+            "name": "status",
+            "description": "filter by status transaction"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "6",
+              "example": "5"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "limit data in page"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "1"
+            },
+            "in": "query",
+            "name": "page",
+            "description": "current page"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Bearer sRtn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update Transaction",
+        "operationId": "post-transaction",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success Update Data": {
+                    "value": {
+                      "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Transaksi berhasil diperbarui"
+                      },
+                      "data": {
+                        "id": 1,
+                        "user_id": 1,
+                        "food_id": 1,
+                        "quantity": 1,
+                        "total": 38000,
+                        "status": "DELIVERED",
+                        "payment_url": "",
+                        "deleted_at": null,
+                        "created_at": 1639391670,
+                        "updated_at": 1639366596
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk update data transaksi berdasarkan id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/x-www-form-urlencoded"
+              ]
+            },
+            "in": "header",
+            "name": "Content-Type",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Bearer sRtn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "DELIVERED",
+                      "PENDING",
+                      "ON_DELIVERY",
+                      "CANCELLED"
+                    ],
+                    "example": "DELIVERED"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Transaction"
+        ]
+      }
+    },
+    "/checkout": {
+      "post": {
+        "summary": "Checkout",
+        "operationId": "post-checkout",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "API untuk checkout transaksi",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            },
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/x-www-form-urlencoded"
+              ]
+            },
+            "in": "header",
+            "name": "Content-Type",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "Bearer sRtn3pjbQQodNARHDpliJ7DV2cFIh5YpIGkd15GZO"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "food_id": {
+                    "type": "integer"
+                  },
+                  "user_id": {
+                    "type": "integer"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  },
+                  "total": {
+                    "type": "integer"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "PENDING",
+                      "ON_DELIVERY",
+                      "DELIVERED",
+                      "CANCELLED"
+                    ]
+                  }
+                },
+                "required": [
+                  "food_id",
+                  "user_id",
+                  "quantity",
+                  "total",
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Transaction"
         ]
       }
     }
