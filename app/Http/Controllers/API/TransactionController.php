@@ -95,7 +95,7 @@ class TransactionController extends Controller
 
         // Membuat transaksi midtrans
         $midtrans = [
-            'transactions_details' => [
+            'transaction_details' => [
                 'order_id' => $transaction->id,
                 'gross_amount' => (int) $transaction->total,
             ],
